@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import './index.css';
+import './index.css';
 import App from './App';
 
-/* ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-) */
+ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 
-interface MainProps {
+/* interface MainProps {
     estado?: string;
     casa?: boolean;
     edad?: number;
@@ -35,4 +35,4 @@ const Render = () => (
     </ul>
 );
 
-ReactDOM.render(<Render />, document.getElementById('root'));
+ReactDOM.render(<Render />, document.getElementById('root')); */
