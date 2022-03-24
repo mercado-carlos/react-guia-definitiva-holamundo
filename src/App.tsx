@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+//import './App.css';
+import './styles/Main.css';
 
 interface AppProps {
     estado?: string;
@@ -18,19 +19,12 @@ const estilo2 = {
 const Li: React.FC<AppProps> = ({ children, estado }) => {
     console.log(estado);
 
-    return (
-        <li
-            style={{ ...estilo2, ...estilo({ bg: '#333' }) }}
-            className="clase-li"
-        >
-            {children}
-        </li>
-    );
+    return <li className="clase-li">{children}</li>;
 };
 
 const App = () => {
     return (
-        <ul style={estilo({ bg: '#750' })} className="clase-css">
+        <ul className="clase-css">
             <Li estado="feliz">valor de li</Li>
         </ul>
     );
