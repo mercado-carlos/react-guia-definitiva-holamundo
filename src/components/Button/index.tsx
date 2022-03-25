@@ -15,10 +15,16 @@ class Button extends React.Component<ButtonProps> {
         console.log('componentDidMount');
     }
 
+    componentDidUpdate(prevProps: any, prevState: any) {
+        console.log('componentDidUpdate', prevProps, prevState);
+    }
+
     render() {
         console.log('rendering button');
 
-        return <button>Enviar</button>;
+        return (
+            <button onClick={() => this.setState({ prop: 1 })}>Enviar</button>
+        );
     }
 }
 
