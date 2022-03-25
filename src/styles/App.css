@@ -1,3 +1,12 @@
+.botton-container {
+  background-color: #0a283e;
+  color: #eee;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .product-container {
   border: solid 1px #eee;
   -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
