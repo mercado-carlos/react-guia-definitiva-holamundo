@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import Productos from './components/Productos';
 
 class App extends React.Component {
     state = {
@@ -13,7 +13,10 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <p>Hola Mundo</p>
+                <Productos
+                    agregarAlCarro={() => console.log('No hace nada')}
+                    productos={this.state.productos}
+                />
             </div>
         );
     }
