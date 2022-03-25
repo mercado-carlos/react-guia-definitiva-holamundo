@@ -12,7 +12,7 @@ class App extends React.Component {
         return (
             <div>
                 <p>Hola mundo</p>
-                <Button />
+                <Button chanchito="feliz" />
                 <button
                     className={`${this.state.valor}`}
                     onClick={() => this.setState({ valor: 2 })}
