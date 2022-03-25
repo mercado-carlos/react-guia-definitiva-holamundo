@@ -1,25 +1,34 @@
 import React from 'react';
-import Button from './components/Button';
+
+import Input from './components/Input';
 
 class App extends React.Component {
     state = {
-        valor: 3,
+        nombre: '',
+        apellido: '',
+    };
+
+    updateValues = (prop: any, value: any) => {
+        this.setState({ [prop]: value });
     };
 
     render() {
-        console.log(this.state);
-
         return (
-            <div>
-                <p>Hola mundo</p>
-                {this.state.valor === 3 ? <Button chanchito="feliz" /> : null}
-                <button
-                    className={`${this.state.valor}`}
-                    onClick={() => this.setState({ valor: 2 })}
-                >
-                    Enviar en App
-                </button>
-            </div>
+            <p>
+                Nombre completo: {`${this.state.nombre} ${this.state.apellido}`}
+                <Input
+                    value={this.state.nombre}
+                    onChange={(e) =>
+                        this.updateValues('nombre', e.target.value)
+                    }
+                />
+                <Input
+                    value={this.state.apellido}
+                    onChange={(e) =>
+                        this.updateValues('apellido', e.target.value)
+                    }
+                />
+            </p>
         );
     }
 }
