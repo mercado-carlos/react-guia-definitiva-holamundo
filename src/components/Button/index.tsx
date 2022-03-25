@@ -19,6 +19,10 @@ class Button extends React.Component<ButtonProps> {
         console.log('componentDidUpdate', prevProps, prevState);
     }
 
+    componentWillUnmount() {
+        console.log('componentWillUnmount', this.props, this.state);
+    }
+
     render() {
         console.log('rendering button');
 
