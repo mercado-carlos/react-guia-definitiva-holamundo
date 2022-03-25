@@ -7,6 +7,25 @@
   cursor: pointer;
 }
 
+.layout {
+  background-color: #fff;
+  color: #0a283e;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.layout .container {
+  width: 1200px;
+}
+
 .product-container {
   border: solid 1px #eee;
   -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
@@ -31,6 +50,10 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.title {
+  margin-bottom: 30px;
 }
 
 .app-container {

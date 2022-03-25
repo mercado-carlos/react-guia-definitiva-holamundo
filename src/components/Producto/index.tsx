@@ -15,7 +15,7 @@ export class Producto extends React.Component<ProductoProps> {
             <div className="product-container">
                 <img src={producto.img} alt={producto.name} />
                 <h3>{producto.name}</h3>
-                <p>{producto.price}</p>
+                <p>${producto.price}</p>
                 <Button onClick={() => agregarAlCarro(producto)}>
                     Agregar al carro
                 </Button>
