@@ -1,0 +1,31 @@
+.product-container {
+  border: solid 1px #eee;
+  -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.product-container img {
+  width: 100%;
+}
+
+.productos-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.app-container {
+  margin: 0;
+  padding: 0;
+}
+/*# sourceMappingURL=App.css.map */

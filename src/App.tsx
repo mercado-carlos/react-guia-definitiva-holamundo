@@ -1,4 +1,6 @@
 import React from 'react';
+import './styles/App.css';
+
 import Productos from './components/Productos';
 
 class App extends React.Component {
@@ -12,7 +14,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="app-container">
                 <Productos
                     agregarAlCarro={() => console.log('No hace nada')}
                     productos={this.state.productos}

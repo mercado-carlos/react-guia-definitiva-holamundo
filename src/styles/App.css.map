@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,kBAAkB,CAAC;EACf,MAAM,EAAE,cAAc;EACtB,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,kBAAkB;EACxC,KAAK,EAAE,GAAG;EACV,OAAO,EAAE,SAAS;EAClB,aAAa,EAAE,GAAG;CAKrB;;AAVD,AAOI,kBAPc,CAOd,GAAG,CAAC;EACA,KAAK,EAAE,IAAI;CACd;;ACTL,AAAA,oBAAoB,CAAC;EACjB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;EACnB,eAAe,EAAE,aAAa;CACjC;;AFFD,AAAA,cAAc,CAAC;EACX,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;CACb",
+    "sources": [
+        "App.scss",
+        "_producto.scss",
+        "_productos.scss"
+    ],
+    "names": [],
+    "file": "App.css"
+}

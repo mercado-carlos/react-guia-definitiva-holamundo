@@ -11,7 +11,7 @@ export class Producto extends React.Component<ProductoProps> {
         const { producto } = this.props;
 
         return (
-            <div>
+            <div className="product-container">
                 <img src={producto.img} alt={producto.name} />
                 <h3>{producto.name}</h3>
                 <p>{producto.price}</p>

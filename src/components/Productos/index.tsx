@@ -12,7 +12,7 @@ class Productos extends React.Component<ProductosProps> {
         const { productos, agregarAlCarro } = this.props;
 
         return (
-            <div>
+            <div className="productos-container">
                 {productos.map((producto: any) => (
                     <Producto
                         agregarAlCarro={agregarAlCarro}
