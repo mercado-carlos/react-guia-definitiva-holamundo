@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './components/Button';
 
 class App extends React.Component {
     state = {
@@ -11,11 +12,12 @@ class App extends React.Component {
         return (
             <div>
                 <p>Hola mundo</p>
+                <Button />
                 <button
                     className={`${this.state.valor}`}
                     onClick={() => this.setState({ valor: 2 })}
                 >
-                    Enviar
+                    Enviar en App
                 </button>
             </div>
         );
