@@ -1,6 +1,23 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 
-const App = () => {
+class App extends Component {
+    state = { contador: 0 };
+
+    incrementar = () => {
+        this.setState({ contador: this.state.contador + 1 });
+    };
+
+    render() {
+        return (
+            <div>
+                Contador: {this.state.contador}
+                <button onClick={this.incrementar}>Incrementar</button>
+            </div>
+        );
+    }
+}
+
+/* const App = () => {
     const [contador, setContador] = useState(0);
 
     return (
@@ -11,6 +28,6 @@ const App = () => {
             </button>
         </div>
     );
-};
+}; */
 
 export default App;
