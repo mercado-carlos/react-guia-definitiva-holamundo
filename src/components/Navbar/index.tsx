@@ -10,11 +10,16 @@ class Navbar extends React.Component<NavbarProps> {
     }
 
     render() {
-        const { carro } = this.props;
+        const { carro, esCarroVisible, mostrarCarro } = this.props;
+
         return (
             <nav className="navbar">
                 <Logo />
-                <Carro carro={carro} />
+                <Carro
+                    carro={carro}
+                    esCarroVisible={esCarroVisible}
+                    mostrarCarro={mostrarCarro}
+                />
             </nav>
         );
     }

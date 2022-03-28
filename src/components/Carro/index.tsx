@@ -10,7 +10,8 @@ class Carro extends React.Component<CarroProps> {
     }
 
     render() {
-        const { carro } = this.props;
+        const { carro, esCarroVisible, mostrarCarro } = this.props;
+
         const cantidad = carro.reduce(
             (acc: any, el: any) => acc + el.cantidad,
             0
@@ -21,8 +22,10 @@ class Carro extends React.Component<CarroProps> {
                 <span className="bubble">
                     {cantidad !== 0 ? <BubbleAlert value={cantidad} /> : null}
                 </span>
-                <button className="carro">Carro</button>
-                <DetallesCarro carro={carro} />
+                <button onClick={mostrarCarro} className="carro">
+                    Carro
+                </button>
+                {esCarroVisible ? <DetallesCarro carro={carro} /> : null}
             </div>
         );
     }

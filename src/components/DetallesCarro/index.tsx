@@ -9,7 +9,7 @@ class DetallesCarro extends React.Component<DetallesCarroProps> {
 
     render() {
         const { carro } = this.props;
-        console.log(carro);
+
         return (
             <div className="detallesCarro">
                 <ul>

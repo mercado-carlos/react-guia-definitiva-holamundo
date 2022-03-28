@@ -6,17 +6,7 @@ import Layout from './components/Layout';
 import Title from './components/Title';
 import Navbar from './components/Navbar';
 
-interface CarroPropsState {
-    name: string;
-    price: number;
-    img: string;
-}
-
-class App extends React.Component<CarroPropsState> {
-    constructor(props: CarroPropsState) {
-        super(props);
-    }
-
+class App extends React.Component {
     state = {
         productos: [
             { name: 'Tomate', price: 1500, img: '/img/tomate.jpg' },
@@ -25,12 +15,25 @@ class App extends React.Component<CarroPropsState> {
         ],
         carro: [
             {
-                name: this.props.name,
-                price: this.props.price,
-                img: this.props.img,
+                name: 'Tomate',
+                price: 1500,
+                img: '/img/tomate.jpg',
+                cantidad: 0,
+            },
+            {
+                name: 'Chicharo',
+                price: 2500,
+                img: '/img/chicharo.jpg',
+                cantidad: 0,
+            },
+            {
+                name: 'Lechuga',
+                price: 500,
+                img: '/img/lechuga.jpg',
                 cantidad: 0,
             },
         ],
+        esCarroVisible: false,
     };
 
     agregarAlCarro = (producto: any) => {
@@ -57,10 +60,23 @@ class App extends React.Component<CarroPropsState> {
         });
     };
 
+    mostrarCarro = () => {
+        if (!this.state.carro.length) {
+            return;
+        }
+        this.setState({ esCarroVisible: !this.state.esCarroVisible });
+    };
+
     render() {
+        const { esCarroVisible } = this.state;
+
         return (
             <div className="app-container">
-                <Navbar carro={this.state.carro} />
+                <Navbar
+                    carro={this.state.carro}
+                    esCarroVisible={esCarroVisible}
+                    mostrarCarro={this.mostrarCarro}
+                />
                 <Layout>
                     <Title />
                     <Productos
