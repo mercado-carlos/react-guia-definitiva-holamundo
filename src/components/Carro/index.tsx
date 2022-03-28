@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BubbleAlert from '../BubbleAlert';
+import DetallesCarro from '../DetallesCarro';
 import { CarroProps } from './interface';
 
 class Carro extends React.Component<CarroProps> {
@@ -21,6 +22,7 @@ class Carro extends React.Component<CarroProps> {
                     {cantidad !== 0 ? <BubbleAlert value={cantidad} /> : null}
                 </span>
                 <button className="carro">Carro</button>
+                <DetallesCarro carro={carro} />
             </div>
         );
     }
