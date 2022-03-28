@@ -13,16 +13,34 @@ class App extends React.Component {
             { name: 'Chicharo', price: 2500, img: '/img/chicharo.jpg' },
             { name: 'Lechuga', price: 500, img: '/img/lechuga.jpg' },
         ],
+        carro: [
+            /* {
+                name: 'Tomate',
+                price: 1500,
+                img: '/img/tomate.jpg',
+                cantidad: 1,
+            }, */
+        ],
+    };
+
+    agregarAlCarro = (producto: any) => {
+        return this.setState({
+            carro: this.state.carro.concat({
+                ...producto,
+                cantidad: 1,
+            }),
+        });
     };
 
     render() {
+        console.log(this.state.carro);
         return (
             <div className="app-container">
                 <Navbar />
                 <Layout>
                     <Title />
                     <Productos
-                        agregarAlCarro={() => console.log('No hace nada')}
+                        agregarAlCarro={this.agregarAlCarro}
                         productos={this.state.productos}
                     />
                 </Layout>
