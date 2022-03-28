@@ -4,6 +4,7 @@ import './styles/App.css';
 import Productos from './components/Productos';
 import Layout from './components/Layout';
 import Title from './components/Title';
+import Navbar from './components/Navbar';
 
 class App extends React.Component {
     state = {
@@ -17,6 +18,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="app-container">
+                <Navbar />
                 <Layout>
                     <Title />
                     <Productos
