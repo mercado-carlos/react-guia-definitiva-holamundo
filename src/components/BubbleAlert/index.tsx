@@ -1,8 +1,24 @@
 import React from 'react';
 
-class BubbleAlert extends React.Component {
+import { BubbleAlertProps } from './interface';
+
+class BubbleAlert extends React.Component<BubbleAlertProps> {
+    constructor(props: BubbleAlertProps) {
+        super(props);
+    }
+
+    getNumber(n: number) {
+        if (!n) {
+            return ' ';
+        }
+
+        return n > 9 ? '9+' : n;
+    }
+
     render() {
-        return <span className="bubbleAlert">5</span>;
+        const { value } = this.props;
+
+        return <span className="bubbleAlert">{this.getNumber(value)}</span>;
     }
 }
 

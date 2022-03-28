@@ -7,7 +7,7 @@ class Carro extends React.Component {
         return (
             <div>
                 <span className="bubble">
-                    <BubbleAlert />
+                    <BubbleAlert value={10} />
                 </span>
                 <button className="carro">Carro</button>
             </div>
