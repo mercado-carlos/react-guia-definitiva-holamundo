@@ -1,11 +1,14 @@
 import React from 'react';
 
+import Carro from '../Carro';
+import Logo from '../Logo';
+
 class Navbar extends React.Component {
     render() {
         return (
             <nav className="navbar">
-                <p>Logo</p>
-                <p>Carro</p>
+                <Logo />
+                <Carro />
             </nav>
         );
     }
