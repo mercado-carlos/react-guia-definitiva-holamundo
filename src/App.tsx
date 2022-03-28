@@ -1,15 +1,16 @@
-import React from 'react';
-
-const impura = () => new Date().toLocaleString();
-console.log(impura());
-const MiComponente = (props: any) => {
-    const { miProp } = props;
-
-    return <div>Nombre: {miProp}</div>;
-};
+import React, { useState } from 'react';
 
 const App = () => {
-    return <MiComponente miProp={'chanchito feliz'} />;
+    const [contador, setContador] = useState(0);
+
+    return (
+        <div>
+            Contador: {contador}
+            <button onClick={() => setContador(contador + 1)}>
+                Incrementar
+            </button>
+        </div>
+    );
 };
 
 export default App;
