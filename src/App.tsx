@@ -6,7 +6,17 @@ import Layout from './components/Layout';
 import Title from './components/Title';
 import Navbar from './components/Navbar';
 
-class App extends React.Component {
+interface CarroPropsState {
+    name: string;
+    price: number;
+    img: string;
+}
+
+class App extends React.Component<CarroPropsState> {
+    constructor(props: CarroPropsState) {
+        super(props);
+    }
+
     state = {
         productos: [
             { name: 'Tomate', price: 1500, img: '/img/tomate.jpg' },
@@ -15,9 +25,9 @@ class App extends React.Component {
         ],
         carro: [
             {
-                name: 'Tomate',
-                price: 1500,
-                img: '/img/tomate.jpg',
+                name: this.props.name,
+                price: this.props.price,
+                img: this.props.img,
                 cantidad: 0,
             },
         ],
@@ -48,10 +58,9 @@ class App extends React.Component {
     };
 
     render() {
-        console.log(this.state.carro);
         return (
             <div className="app-container">
-                <Navbar />
+                <Navbar carro={this.state.carro} />
                 <Layout>
                     <Title />
                     <Productos
