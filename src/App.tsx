@@ -5,14 +5,20 @@ const App = () => {
         normal: 'por defecto',
         texto: '',
         select: '',
+        check: false,
     });
 
     const handleChange = (e: any) => {
         setValue((state) => ({
             ...state,
-            [e.target.name]: e.target.value,
+            [e.target.name]:
+                e.target.type === 'checkbox'
+                    ? e.target.checked
+                    : e.target.value,
         }));
     };
+
+    console.log(value);
 
     return (
         <div>
@@ -23,6 +29,7 @@ const App = () => {
                 value={value.normal}
                 onChange={handleChange}
             />
+
             <textarea
                 name="texto"
                 value={value.texto}
@@ -35,6 +42,13 @@ const App = () => {
                 <option value="chanchitofeliz">Chanchito feliz</option>
                 <option value="chanchitotriste">Chanchito triste</option>
             </select>
+
+            <input
+                type="checkbox"
+                name="check"
+                onChange={handleChange}
+                checked={value.check}
+            />
         </div>
     );
 };
