@@ -42,7 +42,11 @@ function App() {
         >
             <Form>
                 <label>Nombre</label>
-                <Field name="name" type="text" />
+                <Field name="name" type="text" className="input" />
+                <Field name="select" as="select" className="input">
+                    <option value="cha">Cha</option>
+                    <option value="che">Che</option>
+                </Field>
                 <ErrorMessage name="name" />
                 <br />
                 <label>Apellido</label>
