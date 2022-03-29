@@ -1,5 +1,15 @@
 @import 'button', 'card', 'config', 'container', 'input';
 
-.App {
+.app-container {
+    margin-top: 8%;
+
+    ul {
+        li {
+            padding: 10px;
+        }
+    }
+}
+
+.app {
     padding: 20px;
 }

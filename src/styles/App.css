@@ -54,7 +54,15 @@ button.button:hover {
   width: 100%;
 }
 
-.App {
+.app-container {
+  margin-top: 8%;
+}
+
+.app-container ul li {
+  padding: 10px;
+}
+
+.app {
   padding: 20px;
 }
 /*# sourceMappingURL=App.css.map */
