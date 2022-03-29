@@ -1,6 +1,7 @@
 import React from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import TextInput from './components/TextInput';
+import Checkbox from './components/Checkbox';
 
 const validate = (values: any) => {
     const errors = {
@@ -52,6 +53,7 @@ function App() {
                 <label>E-mail</label>
                 <Field name="email" type="text" />
                 <ErrorMessage name="email" />
+                <Checkbox name="accept">Aceptar Terminos</Checkbox>
                 <button type="submit">Enviar</button>
             </Form>
         </Formik>
