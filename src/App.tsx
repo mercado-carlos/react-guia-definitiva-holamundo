@@ -1,23 +1,29 @@
-import React from 'react';
-import './App.css';
+import React, { useRef } from 'react';
 
-function App() {
-    const submit = (e: any) => {
-        e.prevenntDefault();
-        const data = Array.from(new FormData(e.target));
-        console.log(Object.fromEntries(data));
+const App = () => {
+    const input = useRef();
+    const file = useRef();
+
+    const submit = () => {
+        console.log(input.current.value);
+        console.log(file.current.files[0]);
+
+        const form = new FormData();
+        form.append('archivo', file.current.files[0]);
+        form.append('campo', input.current.value);
+        fetch('/lala', { method: 'POST', body: form });
     };
 
     return (
-        <form onSubmit={submit}>
+        <div>
             <div>
-                <span>lalala</span>
-                <input name="campo" />
+                <span>Lala</span>
+                <input type="text" name="campo" ref={input} />
+                <input type="file" ref={file} />
             </div>
-            <input name="campo-2" />
-            <input type="submit" value="Enviar" />
-        </form>
+            <input type="submit" value="Enviar" onClick={submit} />
+        </div>
     );
-}
+};
 
 export default App;
