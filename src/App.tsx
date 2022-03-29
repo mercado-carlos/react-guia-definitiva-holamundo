@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
 const App = () => {
-    const [value, setValue] = useState({ normal: 'por defecto', texto: '' });
+    const [value, setValue] = useState({
+        normal: 'por defecto',
+        texto: '',
+        select: '',
+    });
 
     const handleChange = (e: any) => {
         setValue((state) => ({
@@ -24,6 +28,13 @@ const App = () => {
                 value={value.texto}
                 onChange={handleChange}
             />
+
+            <select value={value.select} name="select" onChange={handleChange}>
+                <option value="">Seleccione</option>
+                <option value="chanchofeliz">Chancho feliz</option>
+                <option value="chanchitofeliz">Chanchito feliz</option>
+                <option value="chanchitotriste">Chanchito triste</option>
+            </select>
         </div>
     );
 };
