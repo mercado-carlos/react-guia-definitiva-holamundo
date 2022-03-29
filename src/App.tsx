@@ -1,24 +1,23 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
-    const submit = (e: any) => {
-        e.prevenntDefault();
-        const data = Array.from(new FormData(e.target));
-        console.log(Object.fromEntries(data));
+const App = () => {
+    const [value, setValue] = useState('');
+
+    const handleChange = (e: any) => {
+        setValue(e.target.value);
     };
 
     return (
-        <form onSubmit={submit}>
-            <div>
-                <span>lalala</span>
-                <input name="campo" />
-            </div>
-            <input name="campo-2" />
-            <input type="file" name="archivo" />
-            <input type="submit" value="Enviar" />
-        </form>
+        <div>
+            {value.length < 5 ? <span>Longitud minima de 5</span> : null}
+            <input
+                type="text"
+                name="normal"
+                value={value}
+                onChange={handleChange}
+            />
+        </div>
     );
-}
+};
 
 export default App;
