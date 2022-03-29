@@ -1,45 +1,42 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react';
+import { useFormik } from 'formik';
 
 function App() {
-  const [count, setCount] = useState(0)
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            lastname: '',
+            email: '',
+        },
+        onSubmit: (values) => console.log(values),
+    });
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    return (
+        <form onSubmit={formik.handleSubmit}>
+            <label>Nombre</label>
+            <input
+                name="name"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+            />
+            <label>Apellido</label>
+            <input
+                name="lastname"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.lastname}
+            />
+            <label>E-mail</label>
+            <input
+                name="email"
+                type="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+            />
+            <button type="submit">Enviar</button>
+        </form>
+    );
 }
 
-export default App
+export default App;
