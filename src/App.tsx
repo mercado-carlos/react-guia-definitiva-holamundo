@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './styles/App.css';
 
-import Input from './components/Input';
 import useFormulario from './hooks/useFormulario';
 import Card from './components/Card';
 import Container from './components/Container';
-import Button from './components/Botton';
+import UserForm from './components/UserForm';
 
 interface UsuariosProps {
     usuarios: any;
@@ -18,47 +17,18 @@ interface UsuariosProps {
 function App() {
     const [usuarios, setUsuarios] = useState<UsuariosProps[]>([]);
 
-    const [formulario, handleChange, reset] = useFormulario({
-        name: '',
-        lastname: '',
-        email: '',
-    });
-
-    const submit = (e: any) => {
-        e.preventDefault();
-        setUsuarios([...usuarios, formulario]);
-        reset();
+    const submit = (usuario: any) => {
+        setUsuarios([...usuarios, usuario]);
     };
+
+    console.log(usuarios);
 
     return (
         <div className="app-container">
             <Container>
                 <Card>
                     <div className="app">
-                        <form onSubmit={submit}>
-                            <Input
-                                label="Nombre"
-                                name="name"
-                                value={formulario.name}
-                                onChange={handleChange}
-                                placeholder="Chancho"
-                            />
-                            <Input
-                                label="Apellido"
-                                name="lastname"
-                                value={formulario.lastname}
-                                onChange={handleChange}
-                                placeholder="Martinez"
-                            />
-                            <Input
-                                label="Correo"
-                                name="email"
-                                value={formulario.email}
-                                onChange={handleChange}
-                                placeholder="chancho1@email.com"
-                            />
-                            <Button>Enviar</Button>
-                        </form>
+                        <UserForm submit={submit} />
                     </div>
                 </Card>
                 <Card>
