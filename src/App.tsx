@@ -1,5 +1,6 @@
 import React from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import TextInput from './components/TextInput';
 
 const validate = (values: any) => {
     const errors = {
@@ -41,12 +42,7 @@ function App() {
             onSubmit={(values) => console.log(values)}
         >
             <Form>
-                <label>Nombre</label>
-                <Field name="name" type="text" className="input" />
-                <Field name="select" as="select" className="input">
-                    <option value="cha">Cha</option>
-                    <option value="che">Che</option>
-                </Field>
+                <TextInput name="nombre" label="Nombre" />
                 <ErrorMessage name="name" />
                 <br />
                 <label>Apellido</label>
