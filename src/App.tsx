@@ -6,11 +6,15 @@ const P = styled.p`
     color: red;
 `;
 
+const Content = styled.div`
+    padding: 20px 25px;
+`;
+
 const App = () => {
     return (
-        <div>
+        <Content>
             <P>Parrafo</P>
-        </div>
+        </Content>
     );
 };
 
