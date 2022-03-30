@@ -1,9 +1,13 @@
 import React from 'react';
 
-import { Container } from './styles/StyledComponents';
+import { Container, Section } from './styles/StyledComponents';
 
 const App = () => {
-    return <Container>lala</Container>;
+    return (
+        <Container>
+            <Section>lala</Section>
+        </Container>
+    );
 };
 
 export default App;
