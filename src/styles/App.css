@@ -1,0 +1,32 @@
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #fff;
+  padding: 22px;
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  position: relative;
+}
+
+header input {
+  outline: none;
+  border: solid 1px #eee;
+  padding: 10px 5px;
+  border-radius: 4px;
+}
+
+html {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+html * {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+/*# sourceMappingURL=App.css.map */
