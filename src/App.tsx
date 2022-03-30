@@ -2,8 +2,17 @@ import React, { useState } from 'react';
 import './styles/App.css';
 import { Field, Form, Formik } from 'formik';
 
+interface PhotosProps {
+    id: any;
+    links: any;
+    urls: any;
+    description: any;
+    alt_description: any;
+}
+
 const App = () => {
-    const [photos, setPhotos] = useState([]);
+    const [photos, setPhotos] = useState<PhotosProps[]>([]);
+    const open = (url: string) => window.open(url);
 
     console.log({ photos });
 
@@ -31,6 +40,24 @@ const App = () => {
                     </Form>
                 </Formik>
             </header>
+            <div className="container">
+                <div className="center">
+                    {photos.map((photo) => (
+                        <article
+                            key={photo.id}
+                            onClick={() => open(photo.links.html)}
+                        >
+                            <img src={photo.urls.regular} />
+                            <p>
+                                {[
+                                    photo.description,
+                                    photo.alt_description,
+                                ].join(' - ')}
+                            </p>
+                        </article>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
