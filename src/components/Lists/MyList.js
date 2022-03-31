@@ -1,11 +1,16 @@
 import { memo } from 'react';
+import { isEqual } from 'lodash';
 
-const Li = memo(({ fullname }) => {
+/* const Li = memo(({ fullname }) => {
     console.log(`renderizando ${fullname}`);
     return <li>{fullname}</li>;
-});
+}); */
+const Li = memo(({ children }) => {
+    console.log(`renderizando ${children}`);
+    return <li>{children}</li>;
+}, isEqual);
 
-const MyList = ({ data }) => {
+/* const MyList = ({ data }) => {
     console.log('renderizando lista');
     return (
         <ul>
@@ -17,6 +22,18 @@ const MyList = ({ data }) => {
             ))}
         </ul>
     );
+}; */
+const MyList = ({ data }) => {
+    console.log('renderizando lista');
+    return (
+        <ul>
+            {data.map((x) => (
+                <Li key={x.name + x.lastname}>
+                    {x.name} {x.lastname}
+                </Li>
+            ))}
+        </ul>
+    );
 };
 
-export default MyList;
+export default memo(MyList);
