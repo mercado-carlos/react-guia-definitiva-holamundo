@@ -1,50 +1,28 @@
-import React, {
-    createContext,
-    useContext,
-    useState,
-    memo,
-    useCallback,
-} from 'react';
+import React, { Component, createContext } from 'react';
 
-const Context = createContext(() => {});
+const Context = createContext('mi valor');
 
-const ContadorProvider = ({ children }: any) => {
-    const [contador, setContador] = useState(0);
-
-    const incrementar = () => useCallback(() => setContador((x) => x + 1), []);
-    const decrementar = () => useCallback(() => setContador((x) => x - 1), []);
-
-    return (
-        <Context.Provider value={{ contador, incrementar, decrementar }}>
-            {children}
-        </Context.Provider>
-    );
+const Provider = ({ children }: any) => {
+    return <Context.Provider value="otro valor">{children}</Context.Provider>;
 };
 
-const Incrementar = memo(() => {
-    console.log('incrementar');
-    const { incrementar } = useContext(Context);
-    return <button onClick={incrementar}>Incrementar</button>;
-});
-const Decrementar = memo(() => {
-    console.log('Decrementar');
-    const { decrementar } = useContext(Context);
-    return <button onClick={decrementar}>Decrementar</button>;
-});
+class Componente extends Component {
+    //static contextType = Context;
 
-const Label = () => {
-    console.log('Label');
-    const { contador } = useContext(Context);
-    return <h1>{contador}</h1>;
-};
+    render() {
+        console.log(this.context);
+        return <div>Hola mundo</div>;
+    }
+}
+
+Componente.contextType = Context;
 
 const App = () => {
     return (
-        <ContadorProvider>
-            <Label />
-            <Incrementar />
-            <Decrementar />
-        </ContadorProvider>
+        <Provider>
+            <Componente />
+            <Context.Consumer>{(valor) => <div>{valor}</div>}</Context.Consumer>
+        </Provider>
     );
 };
 
