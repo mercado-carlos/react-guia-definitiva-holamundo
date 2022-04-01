@@ -4,6 +4,7 @@ import TodoItem from './components/TodoItem';
 
 const initialState = {
     entities: [],
+    filter: 'all',
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -28,15 +29,35 @@ export const reducer = (state: any = initialState, action: any) => {
                 entities: newTodos,
             };
         }
+        case 'filter/set': {
+            return {
+                ...state,
+                filter: action.payload,
+            };
+        }
         default:
             return state;
     }
 };
 
+const selectTodos = (state: any) => {
+    const { entities, filter } = state;
+
+    if (filter === 'complete') {
+        return entities.filter((todo: any) => todo.completed);
+    }
+
+    if (filter === 'incomplete') {
+        return entities.filter((todo: any) => !todo.completed);
+    }
+
+    return entities;
+};
+
 const App = () => {
     const [value, setValue] = useState('');
     const dispatch = useDispatch();
-    const state = useSelector((x) => x);
+    const todos = useSelector(selectTodos);
 
     const submit = (e: any) => {
         e.preventDefault();
@@ -59,11 +80,27 @@ const App = () => {
                     onChange={(e) => setValue(e.target.value)}
                 />
             </form>
-            <button>Mostrar todos</button>
-            <button>Completados</button>
-            <button>Incompletos</button>
+            <button
+                onClick={() => dispatch({ type: 'filter/set', payload: 'all' })}
+            >
+                Mostrar todos
+            </button>
+            <button
+                onClick={() =>
+                    dispatch({ type: 'filter/set', payload: 'complete' })
+                }
+            >
+                Completados
+            </button>
+            <button
+                onClick={() =>
+                    dispatch({ type: 'filter/set', payload: 'incomplete' })
+                }
+            >
+                Incompletos
+            </button>
             <ul>
-                {state.entities.map((todo: any) => (
+                {todos.map((todo: any) => (
                     <TodoItem key={todo.id} todo={todo} />
                 ))}
             </ul>
