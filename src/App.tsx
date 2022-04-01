@@ -14,6 +14,20 @@ export const reducer = (state: any = initialState, action: any) => {
                 entities: state.entities.concat({ ...action.payload }),
             };
         }
+        case 'todo/complete': {
+            const newTodos = state.entities.map((todo: any) => {
+                if (todo.id === action.payload.id) {
+                    return { ...todo, completed: !todo.completed };
+                }
+
+                return todo;
+            });
+
+            return {
+                ...state,
+                entities: newTodos,
+            };
+        }
         default:
             return state;
     }
