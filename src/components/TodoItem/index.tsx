@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { setComplete } from '../../features/todos';
+
 interface TodoItemProps {
     todo: any;
 }
@@ -11,7 +13,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     return (
         <li
             style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-            onClick={() => dispatch({ type: 'todo/complete', payload: todo })}
+            onClick={() => dispatch(setComplete(todo))}
         >
             {todo.title}
         </li>
