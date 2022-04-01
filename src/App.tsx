@@ -1,13 +1,44 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { combineReducers } from 'redux';
 import TodoItem from './components/TodoItem';
 
-const initialState = {
-    entities: [],
-    filter: 'all',
+export const filterReducer = (state: string = 'all', action: any) => {
+    switch (action.type) {
+        case 'filter/set':
+            return action.payload;
+        default:
+            return state;
+    }
 };
 
-export const reducer = (state: any = initialState, action: any) => {
+export const todosReducer = (state: any = [], action: any) => {
+    switch (action.type) {
+        case 'todo/add': {
+            return state.entities.concat({ ...action.payload });
+        }
+        case 'todo/complete': {
+            const newTodos = state.map((todo: any) => {
+                if (todo.id === action.payload.id) {
+                    return { ...todo, completed: !todo.completed };
+                }
+
+                return todo;
+            });
+
+            return newTodos;
+        }
+        default:
+            return state;
+    }
+};
+
+export const reducer = combineReducers({
+    entities: todosReducer,
+    filter: filterReducer,
+});
+
+/* export const reducer = (state: any = initialState, action: any) => {
     switch (action.type) {
         case 'todo/add': {
             return {
@@ -38,7 +69,7 @@ export const reducer = (state: any = initialState, action: any) => {
         default:
             return state;
     }
-};
+}; */
 
 const selectTodos = (state: any) => {
     const { entities, filter } = state;
