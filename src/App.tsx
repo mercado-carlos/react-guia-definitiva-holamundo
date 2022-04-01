@@ -1,45 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const reducer = (state: number = 0, action: any) => {
-    console.log({ action, state });
+const initialState = {
+    entities: [],
+};
+
+export const reducer = (state: any = initialState, action: any) => {
     switch (action.type) {
-        case 'incrementar':
-            return state + 1;
-        case 'decrementar':
-            return state - 1;
-        case 'set':
-            return action.payload;
+        case 'todo/add': {
+            console.log('reducer');
+            return {
+                ...state,
+                entities: [{}],
+            };
+        }
         default:
             return state;
     }
 };
 
-function App() {
-    const [valor, setValor] = useState(0);
+const App = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state) => state);
-    const set = () => {
-        dispatch({ type: 'set', payload: valor });
-        setValor(0);
-    };
+    const state = useSelector((x) => x);
+    console.log(state, 'rendering');
 
     return (
         <div>
-            <p>Contador: {state}</p>
-            <button onClick={() => dispatch({ type: 'incrementar' })}>
-                Incrementar
+            <form>
+                <input />
+            </form>
+            <button onClick={() => dispatch({ type: 'todo/add' })}>
+                Mostrar todos
             </button>
-            <button onClick={() => dispatch({ type: 'decrementar' })}>
-                Decrementar
-            </button>
-            <button onClick={set}>Set</button>
-            <input
-                value={valor}
-                onChange={(e) => setValor(Number(e.target.value))}
-            />
+            <button>Completados</button>
+            <button>Incompletos</button>
+            <ul>
+                <li>todo 1</li>
+                <li>todo 2</li>
+            </ul>
         </div>
     );
-}
+};
 
 export default App;
