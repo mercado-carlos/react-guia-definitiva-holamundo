@@ -37,6 +37,24 @@ export const filterReducer = (state: string = 'all', action: any) => {
     }
 };
 
+const initialFetching = { loading: 'idle', error: null };
+export const fetchingReducer = (state: any = initialFetching, action: any) => {
+    switch (action.type) {
+        case 'todos/pending': {
+            return { ...state, loading: 'pending' };
+        }
+        case 'todos/fulfilled': {
+            return { ...state, loading: 'succeded' };
+        }
+        case 'todos/error': {
+            return { error: action.error, loading: 'rejected' };
+        }
+        default: {
+            return state;
+        }
+    }
+};
+
 export const todosReducer = (state: any = [], action: any) => {
     switch (action.type) {
         case 'todos/fulfilled': {
@@ -62,12 +80,18 @@ export const todosReducer = (state: any = [], action: any) => {
 };
 
 export const reducer = combineReducers({
-    entities: todosReducer,
+    todos: combineReducers({
+        entities: todosReducer,
+        status: fetchingReducer,
+    }),
     filter: filterReducer,
 });
 
 const selectTodos = (state: any) => {
-    const { entities, filter } = state;
+    const {
+        todos: { entities },
+        filter,
+    } = state;
 
     if (filter === 'complete') {
         return entities.filter((todo: any) => todo.completed);
@@ -80,10 +104,13 @@ const selectTodos = (state: any) => {
     return entities;
 };
 
+const selectStatus = (state: any) => state.todos.status;
+
 const App = () => {
     const [value, setValue] = useState('');
     const dispatch = useDispatch();
     const todos = useSelector(selectTodos);
+    const status = useSelector(selectStatus);
 
     const submit = (e: any) => {
         e.preventDefault();
@@ -97,6 +124,13 @@ const App = () => {
         dispatch({ type: 'todo/add', payload: todo });
         setValue('');
     };
+
+    if (status.loading === 'pending') {
+        return <p>Cargando...</p>;
+    }
+    if (status.loading === 'rejected') {
+        return <p>{status.error}</p>;
+    }
 
     return (
         <div>
