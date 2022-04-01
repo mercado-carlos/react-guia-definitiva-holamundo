@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { combineReducers } from 'redux';
+
 import TodoItem from './components/TodoItem';
+
+export const asyncMiddleware = (store: any) => (next: any) => (action: any) => {
+    if (typeof action === 'function') {
+        return action(store.dispatch, store.getState);
+    }
+
+    return next(action);
+};
+
+export const fetchThunk = () => (dispatch: any) => {
+    console.log('thunk', dispatch);
+};
 
 export const filterReducer = (state: string = 'all', action: any) => {
     switch (action.type) {
@@ -37,39 +50,6 @@ export const reducer = combineReducers({
     entities: todosReducer,
     filter: filterReducer,
 });
-
-/* export const reducer = (state: any = initialState, action: any) => {
-    switch (action.type) {
-        case 'todo/add': {
-            return {
-                ...state,
-                entities: state.entities.concat({ ...action.payload }),
-            };
-        }
-        case 'todo/complete': {
-            const newTodos = state.entities.map((todo: any) => {
-                if (todo.id === action.payload.id) {
-                    return { ...todo, completed: !todo.completed };
-                }
-
-                return todo;
-            });
-
-            return {
-                ...state,
-                entities: newTodos,
-            };
-        }
-        case 'filter/set': {
-            return {
-                ...state,
-                filter: action.payload,
-            };
-        }
-        default:
-            return state;
-    }
-}; */
 
 const selectTodos = (state: any) => {
     const { entities, filter } = state;
@@ -130,6 +110,7 @@ const App = () => {
             >
                 Incompletos
             </button>
+            <button onClick={() => dispatch(fetchThunk())}>Fetch</button>
             <ul>
                 {todos.map((todo: any) => (
                     <TodoItem key={todo.id} todo={todo} />
