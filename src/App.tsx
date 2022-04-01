@@ -12,8 +12,20 @@ export const asyncMiddleware = (store: any) => (next: any) => (action: any) => {
     return next(action);
 };
 
-export const fetchThunk = () => (dispatch: any) => {
-    console.log('thunk', dispatch);
+export const fetchThunk = () => async (dispatch: any) => {
+    dispatch({ type: 'todos/pending' });
+
+    try {
+        const response = await fetch(
+            'https://jsonplaceholder.typicode.com/todos'
+        );
+        const data = await response.json();
+        const todos = data.slice(0, 10);
+
+        dispatch({ type: 'todos/fulfilled', payload: todos });
+    } catch (e: any) {
+        dispatch({ type: 'todos/error', error: e.message });
+    }
 };
 
 export const filterReducer = (state: string = 'all', action: any) => {
@@ -27,6 +39,9 @@ export const filterReducer = (state: string = 'all', action: any) => {
 
 export const todosReducer = (state: any = [], action: any) => {
     switch (action.type) {
+        case 'todos/fulfilled': {
+            return action.payload;
+        }
         case 'todo/add': {
             return state.entities.concat({ ...action.payload });
         }
