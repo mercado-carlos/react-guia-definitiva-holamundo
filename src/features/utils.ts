@@ -1,3 +1,9 @@
+export const mat = (entity: any) => [
+    `${entity}/pending`,
+    `${entity}/fulfilled`,
+    `${entity}/rejected`,
+];
+
 export const mac =
     (type: any, ...argNames: any[]) =>
     (...args: any[]) => {
@@ -8,6 +14,12 @@ export const mac =
 
         return action;
     };
+
+export const asyncMac = (asyncTypes: any[]) => [
+    mac(asyncTypes[0]),
+    mac(asyncTypes[1], 'payload'),
+    mac(asyncTypes[2], 'error'),
+];
 
 export const reduceReducers =
     (...reducers: any[]) =>
