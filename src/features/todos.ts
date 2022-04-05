@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux';
 
-import { makeFetchingReducer, makeSetReducer } from './utils';
+import {
+    makeCrudReducer,
+    makeFetchingReducer,
+    makeSetReducer,
+    reduceReducers,
+} from './utils';
 
 export const setPending = () => {
     return {
@@ -46,29 +51,10 @@ export const fetchingReducer = makeFetchingReducer([
     'todos/rejected',
 ]);
 
-export const todosReducer = (state: any = [], action: any) => {
-    switch (action.type) {
-        case 'todos/fulfilled': {
-            return action.payload;
-        }
-        case 'todo/add': {
-            return state.entities.concat({ ...action.payload });
-        }
-        case 'todo/complete': {
-            const newTodos = state.map((todo: any) => {
-                if (todo.id === action.payload.id) {
-                    return { ...todo, completed: !todo.completed };
-                }
+const fulfilledReducer = makeSetReducer(['todos/fulfilled']);
+const crudReducer = makeCrudReducer(['todo/add', 'todo/complete']);
 
-                return todo;
-            });
-
-            return newTodos;
-        }
-        default:
-            return state;
-    }
-};
+export const todosReducer = reduceReducers(crudReducer, fulfilledReducer);
 
 export const reducer = combineReducers({
     todos: combineReducers({
