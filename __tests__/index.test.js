@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Index from '../pages/index';
+import Index, { getStaticProps } from '../pages/index';
 
 describe('Index', () => {
     describe('Component', () => {
@@ -23,5 +23,23 @@ describe('Index', () => {
             expect(url).toEqual('/pokemones/1');
         });
     });
-    describe('getStaticProps', () => {});
+    describe('getStaticProps', () => {
+        it('return pokemones', async () => {
+            global.fetch = jest.fn().mockImplementation((url) => {
+                expect(url).toBe('https://pokeapi.co/api/v2/pokemon?limit=151');
+                console.log(url);
+                return new Promise((resolve) => {
+                    resolve({
+                        json: () =>
+                            Promise.resolve({
+                                results: 'lista de pokemones',
+                            }),
+                    });
+                });
+            });
+
+            const { props } = await getStaticProps();
+            expect(props.pokemones).toBe('lista de pokemones');
+        });
+    });
 });
