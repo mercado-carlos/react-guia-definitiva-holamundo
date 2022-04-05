@@ -1,15 +1,25 @@
-import Link from 'next/link';
-import Image from 'next/image';
+const Pokemon = ({ pokemon }) => {
+    return <li>{pokemon.name}</li>;
+};
 
-import Tomate from '../public/tomate.jpg';
-
-// <Image src="/tomate.jpg" width={400} height={400} />
-export default function Home() {
+export default function Pokemones({ pokemones }) {
     return (
         <div>
-            <Link href="/chanchitos">Ir a chanchitos</Link>
-            <p>Hola mundo</p>
-            <Image src={Tomate} width={400} height={400} />
+            <p>Pokemones</p>
+            <ul>
+                {pokemones.map((pokemon) => (
+                    <Pokemon pokemon={pokemon} key={pokemon.name} />
+                ))}
+            </ul>
         </div>
     );
 }
+
+export const getStaticProps = async () => {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+    const data = await response.json();
+
+    return {
+        props: { pokemones: data.results },
+    };
+};
