@@ -1,3 +1,14 @@
+export const mac =
+    (type: any, ...argNames: any[]) =>
+    (...args: any[]) => {
+        const action = { type };
+        argNames.forEach((arg, index) => {
+            action[argNames[index]] = args[index];
+        });
+
+        return action;
+    };
+
 export const reduceReducers =
     (...reducers: any[]) =>
     (state: any, action: any) =>
